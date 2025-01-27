@@ -7,22 +7,23 @@ const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {login, error} = useLogin();
-    const handleRegister = () => {
+    const handleLogin = () => {
         login({email, password}).then((d) => {
             console.log(d);
         }).catch(e => {
-            console.error(e.message);
+            console.warn(e);
+            console.error(error);
         })
     }
     return (
         <Flex vertical align={"stretch"} style={{width: '350px'}}>
             <Typography.Title level={1}>Auth</Typography.Title>
             <Input placeholder="Логин" value={email} onChange={e => setEmail(e.target.value)}/>
-            <Input placeholder="Пароль" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+            <Input.Password placeholder="Пароль" value={password} onChange={e => setPassword(e.target.value)}/>
             <Typography.Text>
                 <NavLink to={'/register'}>Регистрация</NavLink>
             </Typography.Text>
-            <Button onClick={handleRegister} type="primary">Войти</Button>
+            <Button onClick={handleLogin} type="primary">Войти</Button>
         </Flex>
     );
 };

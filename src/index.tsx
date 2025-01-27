@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import ThemeProvider from "./lib/themeProvider";
 import {ApolloProvider} from "@apollo/client";
 import client from "./constants/appollo-client";
+import {DevSupport} from "@react-buddy/ide-toolbox";
+import {ComponentPreviews, useInitial} from "./dev";
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
     <ApolloProvider client={client}>
         <ThemeProvider>
-            <App/>
+            <DevSupport ComponentPreviews={ComponentPreviews}
+                        useInitialHook={useInitial}
+            >
+                <App/>
+            </DevSupport>
         </ThemeProvider>
     </ApolloProvider>
 );
